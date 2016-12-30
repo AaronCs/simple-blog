@@ -1,1 +1,1 @@
-Boilerplate for React projects. Webpack, SCSS, React
+React project with Firebase.
