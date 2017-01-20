@@ -10,6 +10,6 @@ export default (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
     <Route path='login' component={Login}/>
-    <Route path='post/new' component={newPost} />
+    <Route path='new' component={newPost} />
   </Route>
 );

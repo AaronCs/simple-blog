@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 
 // TODO: Set tab active based on app state
+// TODO: Make Login change to Logout if user is auth'd and logged in
 class App extends Component {
   render() {
     return (
@@ -13,10 +14,10 @@ class App extends Component {
                 <Link to='/' className=''>Home</Link>
               </li>
               <li>
-                <Link to='login' className=''>Login</Link>
+                <Link to='new'>New Post</Link>
               </li>
               <li>
-                <Link to='post/new'>New Post</Link>
+                <Link to='login' className=''>Login</Link>
               </li>
             </ul>
           </div>

@@ -7,11 +7,17 @@ import { authUser } from '../actions/index';
 class Login extends Component {
     render() {
       return(
-        <div>
-            <form>
-                <input />
-                <input />
-                <button type="submit">Login</button>
+        <div className='row center-block'>
+            <form className='bg-info'>
+                <div className='col-md-4'>
+                    <label>Username</label>
+                    <input className='form-control' />
+                </div>
+                <div className='col-md-4'>
+                    <label>Password</label>
+                        <input className='form-control'/>
+                        <button className='btn btn-default pull-right' type="submit">Login</button>
+                </div>
             </form>
         </div>
       );
