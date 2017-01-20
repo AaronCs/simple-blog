@@ -1,0 +1,4 @@
+files:
+  include: 'src/style/*.s+(a|c)ss'
+rules:
+  no-trailing-whitespace: true

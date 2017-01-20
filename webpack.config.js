@@ -1,11 +1,15 @@
+/* eslint-disable */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
+
 module.exports = {
     entry: [
         './src/index.js'
     ],
     output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'dist/'),
+        publicPath: '/dist',
+        filename: 'bundle.js',
     },
     module: {
         loaders: [{
@@ -17,19 +21,20 @@ module.exports = {
         },
         {
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('css!sass'),
+            loader: ExtractTextPlugin.extract('style', 'css!sass'),
         }
         ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: './src'
-    },
     plugins: [
-        new ExtractTextPlugin("./styles.css")
+        new ExtractTextPlugin("./styles.css", {
+            allChunks: true
+        }),
     ],
-    devtool: "source-map",
+    devTool: 'eval-source-map',
+    devServer: {
+        historyApiFallback: true
+    }
 };
