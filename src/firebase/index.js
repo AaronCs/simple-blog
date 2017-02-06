@@ -22,3 +22,8 @@ firebaseRef.set({
   },
   isRunning: true,
 });
+
+// Get posts and export them.
+export const posts = {
+
+};

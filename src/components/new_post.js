@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
-class newPost extends Component {
+import NewPostForm from './new_post_form';
+import { newPost as newPostAction } from '../actions/index';
+
+class NewPost extends Component {
+    handleNewPost(fieldValue) {
+        // TODO Get post id and username
+        const postId = 1;
+        const author = 'Aaron';
+        this.props.newPostAction(fieldValue, postId, author);
+    }
     render() {
       return(
         <div>
           <h3>
              New Post
           </h3>
-          <form>
-             <div className='row'>
-                <div className='col-md-8'>
-                  <label>Title</label>
-                  <input className='form-control'/>
-                </div>
-              </div>
-              <div className='row'>
-                <div className='col-md-8'>
-                  <label>Content</label>
-                  <textArea className='form-control'/>
-                 </div>
-              </div>
-
-              <button type='submit' className="btn btn-default">Submit</button>
-          </form>
-
-
+          <NewPostForm onSubmit={this.handleNewPost.bind(this)} />
         </div>
         );
     }
 }
 
-export default newPost;
+export default connect(null, { newPostAction })(NewPost);
