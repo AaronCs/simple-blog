@@ -1,1 +1,1 @@
-React project with Firebase.
+Simple blog using React, Redux, and Firebase
