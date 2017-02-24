@@ -10,3 +10,10 @@ input {
 textarea {
   margin: 1% 0 5%;
 }
+
+.ex {
+  float: right;
+  &:hover {
+    cursor: pointer;
+  }
+}

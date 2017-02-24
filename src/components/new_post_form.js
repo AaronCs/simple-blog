@@ -8,7 +8,7 @@ class NewPostForm extends Component {
              <div className='row'>
                 <div className='col-md-8'>
                   <label>Title</label>
-                  <Field className='form-control' name='title' component='input' type='text'/>
+                  <Field className='form-control' name='title' component='input' type='text' autoComplete='off'/>
                 </div>
               </div>
               <div className='row'>

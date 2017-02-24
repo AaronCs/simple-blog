@@ -11,7 +11,8 @@ class Home extends Component {
     if(posts.length < 1) return <div>No Posts</div>;
     // Otherwise, return an array of mapped elements.
     return posts.map( (post, i) => {
-      return <SinglePost key={i} title={post.title} content={post.content} author={post.author}/>;
+      return <SinglePost className="container" post_id={post.post_id} key={i} index={i} title={post.title}
+              content={post.content} author={post.author}/>;
     });
   }
   render() {

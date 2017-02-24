@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { removePost } from '../actions/index';
 
 class SinglePost extends Component {
   render() {
-    const { author, content, title } = this.props;
+    const { author, content, title, post_id, index } = this.props;
     // TODO: Styling
     return (
-      <div>
+      <div className='col-md-4'>
+        <div className="ex" onClick={this.props.removePost.bind(null, post_id, index)}>x</div>
         <h2>{title}</h2>
         <div>{content}</div>
         <div>Author: {author}</div>
@@ -14,4 +17,4 @@ class SinglePost extends Component {
   }
 }
 
-export default SinglePost;
+export default connect(null, { removePost })(SinglePost);

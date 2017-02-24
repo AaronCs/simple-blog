@@ -1,4 +1,8 @@
-import { AUTH } from '../actions/index';
+import {
+  AWAITING_AUTH_RESPONSE,
+  LOGOUT,
+  LOGIN_USER,
+} from '../actions/types';
 
 const INITIAL_STATE = {
   username: '',
@@ -7,12 +11,6 @@ const INITIAL_STATE = {
 
 export default function(state=INITIAL_STATE, action) {
   switch(action.type) {
-    case AUTH:
-      return {
-        ...state,
-        username: action.payload.username,
-        pasword: action.payloade.password,
-      };
     default:
     return state;
   }

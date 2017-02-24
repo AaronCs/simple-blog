@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/index';
 import { Link } from 'react-router';
 
 // TODO: Set tab active based on app state
 // TODO: Make Login change to Logout if user is auth'd and logged in
 class App extends Component {
+  componentWillMount() {
+    this.props.fetchPosts();
+  }
   render() {
     return (
       <div>
@@ -31,4 +36,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchPosts })(App);

@@ -9,21 +9,6 @@ const config = {
 };
 
 firebase.initializeApp(config);
-const firebaseRef = firebase.database().ref();
+const database = firebase.database();
 
-firebaseRef.set({
-  app: {
-    name: 'Login App',
-    version: '1.0.0'
-  },
-  user: {
-    username: 'Pineapple',
-    firstName: 'Aaron'
-  },
-  isRunning: true,
-});
-
-// Get posts and export them.
-export const posts = {
-
-};
+export default database;
