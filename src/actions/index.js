@@ -1,5 +1,51 @@
-import { NEW_POST, REMOVE_POST } from './types';
-import database from '../firebase/index';
+import { REDIRECT, NEW_POST, REMOVE_POST, LOGIN, LOGOUT } from './types';
+import database, { authProvider } from '../firebase/index';
+import firebase from 'firebase';
+import { browserHistory } from 'react-router';
+
+export function redirectUrl(currentUrl) {
+    return {
+        type: REDIRECT,
+        payload: currentUrl,
+    };
+}
+
+export function userLogin(username, token) {
+    return {
+        type: LOGIN,
+        payload: {
+            username,
+            token
+        }
+    };
+}
+
+export function userLoginAuth() {
+    return dispatch => {
+        firebase.auth().signInWithPopup(authProvider).then( (result) => {
+            const token = result.credential.accessToken;
+            const user = result.user;
+            dispatch(userLogin(user, token));
+            // Redirects user back to previous page.
+            browserHistory.goBack();
+        });
+    };
+}
+
+export function userLogout() {
+    return dispatch => {
+        firebase.auth().signOut().then( () => {
+            dispatch(logout());
+        });
+        browserHistory.push('/');
+    };
+}
+
+export function logout() {
+    return {
+        type: LOGOUT,
+    };
+}
 
 export function removePost(post_id, i) {
     // Find child in db, remove child from db.

@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import SinglePost from '../components/single_post';
 
-// I need to grab posts from firebase
+//TODO Make sure that users are only allowed to delete their own posts.
 // For styling, use list-group-item
 class Home extends Component {
   renderPosts() {

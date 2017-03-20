@@ -17,3 +17,19 @@ textarea {
     cursor: pointer;
   }
 }
+
+.hover-mouse-pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.to-the-right {
+  margin-right: 10em;
+  text-align: right;
+}
+
+.right {
+  float: right;
+  margin: 1em 10em auto auto;
+}

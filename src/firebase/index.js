@@ -10,5 +10,5 @@ const config = {
 
 firebase.initializeApp(config);
 const database = firebase.database();
-
+export const authProvider = new firebase.auth.GoogleAuthProvider(); // Sign in with Google
 export default database;

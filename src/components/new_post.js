@@ -8,7 +8,7 @@ import { newPost as newPostAction } from '../actions/index';
 class NewPost extends Component {
     handleNewPost(fieldValue) {
         // TODO Get post id and username
-        const author = 'Aaron';
+        const author = this.props.login.username;
         this.props.newPostAction(fieldValue, author);
     }
     render() {
@@ -23,4 +23,10 @@ class NewPost extends Component {
     }
 }
 
-export default connect(null, { newPostAction })(NewPost);
+function mapStateToProps(state) {
+    return {
+        login: state.login,
+    };
+}
+
+export default connect(mapStateToProps, { newPostAction })(NewPost);

@@ -18,7 +18,7 @@ class NewPostForm extends Component {
                  </div>
               </div>
 
-              <button type='submit' className="btn btn-default">Submit</button>
+              <button type='submit' className="btn btn-primary">Submit</button>
           </form>
       );
     }
