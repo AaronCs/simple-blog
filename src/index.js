@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -21,8 +21,12 @@ const middleware = applyMiddleware(thunk);
 
 const store = createStore(rootReducer, initialState, composeEnhancers(middleware));
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
-  </Provider>
-  , document.getElementById('container'));
+export default class Index extends Component {
+    render() {
+      return (
+        <Provider store={store}>
+          <Router history={browserHistory} routes={routes}/>
+        </Provider>
+      );
+    }
+}

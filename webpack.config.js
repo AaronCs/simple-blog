@@ -1,41 +1,52 @@
 /* eslint-disable */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     entry: [
-        './src/index.js'
+        'react-hot-loader/patch',
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        './src/index_container.js'
     ],
     output: {
         path: path.resolve(__dirname, 'dist/'),
-        publicPath: '/dist',
         filename: 'bundle.js',
+        publicPath: '/dist',
     },
     module: {
-        loaders: [{
+        rules: [
+        {
+            test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015', 'stage-1']
-            },
+            loader: 'babel-loader',
         },
         {
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('style', 'css!sass'),
-        }
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: ['css-loader', 'sass-loader'],
+                publicPath: '/dist',
+            })
+        },
         ]
     },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
     plugins: [
-        new ExtractTextPlugin("./styles.css", {
-            allChunks: true
+        new ExtractTextPlugin({
+            filename: 'styles.css',
+            disable: false,
+            allChunks: true,
         }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
     ],
-    devTool: 'eval-source-map',
     devServer: {
-        historyApiFallback: true
+        host: 'localhost',
+        port: 8080,
+        historyApiFallback: true,
+        hot: true,
     }
 };

@@ -3,6 +3,9 @@ import database, { authProvider } from '../firebase/index';
 import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
+// TODO: Access the auth instance for firebase for users so they
+// won't have to login each time.
+
 export function redirectUrl(currentUrl) {
     return {
         type: REDIRECT,
@@ -10,25 +13,37 @@ export function redirectUrl(currentUrl) {
     };
 }
 
-export function userLogin(username, token) {
+export function userLogin(username) {
     return {
         type: LOGIN,
         payload: {
             username,
-            token
         }
+    };
+}
+
+export function beginningLoginAuth() {
+    return dispatch => {
+        firebase.auth().onAuthStateChanged( (user) => {
+            if(user) {
+                dispatch(userLogin(user));
+            }
+        });
     };
 }
 
 export function userLoginAuth() {
     return dispatch => {
-        firebase.auth().signInWithPopup(authProvider).then( (result) => {
-            const token = result.credential.accessToken;
-            const user = result.user;
-            dispatch(userLogin(user, token));
-            // Redirects user back to previous page.
-            browserHistory.goBack();
-        });
+        const user = firebase.auth().currentUser;
+        if(!user) {
+            firebase.auth().signInWithPopup(authProvider).then( (result) => {
+                const token = result.credential.accessToken;
+                const user = result.user;
+                dispatch(userLogin(user));
+                // Redirects user back to previous page.
+                browserHistory.replace('/');
+            });
+        }
     };
 }
 

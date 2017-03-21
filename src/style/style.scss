@@ -1,5 +1,19 @@
+@import 'variables';
+@import 'nav';
+
 body {
-  padding-top: 70px;
+  background-color: $background-color;
+  font-family: $font-family;
+  margin: auto 5em;
+  padding-top: 3.5em;
+
+  @media (min-width: 2560px) {
+    font-size: 2em;
+  }
+
+  @media(max-width: 375px) {
+    margin: auto;
+  }
 }
 
 input {
@@ -13,6 +27,7 @@ textarea {
 
 .ex {
   float: right;
+
   &:hover {
     cursor: pointer;
   }
@@ -22,11 +37,6 @@ textarea {
   &:hover {
     cursor: pointer;
   }
-}
-
-.to-the-right {
-  margin-right: 10em;
-  text-align: right;
 }
 
 .right {
