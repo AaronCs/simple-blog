@@ -1,4 +1,4 @@
-import { REDIRECT, NEW_POST, REMOVE_POST, LOGIN, LOGOUT } from './types';
+import { REDIRECT, NEW_POST, REMOVE_POST, LOGIN, LOGOUT, ACTIVE_TAB_CHANGE } from './types';
 import database, { authProvider } from '../firebase/index';
 import firebase from 'firebase';
 import { browserHistory } from 'react-router';

@@ -6,21 +6,33 @@ class Nav extends Component {
     // Add an upside down triangle to show it's a menu
     // TODO: Keep the overline active when on that page.
     // Have to access the browser history.
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeTab: 'home',
+        };
+    }
+    handleClick(url, tabName) {
+        browserHistory.push(url);
+        this.setState({
+            activeTab: tabName,
+        });
+    }
     render() {
       return(
-        <nav className=''>
+        <nav>
             <div className='navbar-user'>
               Welcome, {this.props.username}
             </div>
                 <ul className='navbar-nav'>
-                  <li>
+                  <li id='home' onClick={() => this.handleClick('/', 'home')}>
                     <Link to='/' className=''>Home</Link>
                   </li>
-                  <li onClick={() => browserHistory.push('new')}>
+                  <li id='new' onClick={() => this.handleClick('new', 'new')}>
                     <Link to='new' >New Post</Link>
                   </li>
-                  <li onClick={() => browserHistory.push('settings')}>
-                    <Link to='/settings' >Settings</Link>
+                  <li id='settings' onClick={() => this.handleClick('settings', 'settings')}>
+                    <Link to='settings' >Settings</Link>
                   </li>
                 </ul>
         </nav>

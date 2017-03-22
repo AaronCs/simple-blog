@@ -7,8 +7,6 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
         'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
         './src/index_container.js',
     ],
     output: {
@@ -21,7 +19,7 @@ module.exports = {
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: 'babel-loader',
+            use: ['react-hot-loader/webpack', 'babel-loader'],
         },
         {
             test: /\.scss$/,
