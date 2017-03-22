@@ -20,6 +20,14 @@ const middleware = applyMiddleware(thunk);
 
 const store = createStore(rootReducer, initialState, composeEnhancers(middleware));
 
+function configureStore(store) {
+    if (module.hot) {
+        module.hot.accept('./reducers', () => {
+            store.replaceReducer(rootReducer);
+        });
+    }
+}
+
 export default class Index extends Component {
     render() {
       return (

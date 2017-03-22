@@ -1,6 +1,8 @@
 $color-black: #000;
 $color-grey: #ccc;
 
+
+
 .navbar-user {
   text-align: right;
 
@@ -40,6 +42,12 @@ a {
   &:hover {
     //font-size: 2em;
     //background-color: $color-black;
-    text-decoration: overline;
+    border-top: 1px $color-black solid;
   }
+}
+
+.active {
+  // Which border looks better?
+  border-bottom: 3px $color-black solid;
+  border-top: 3px $color-black solid;
 }
