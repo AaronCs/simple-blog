@@ -9,7 +9,7 @@ module.exports = {
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:8080',
         'webpack/hot/only-dev-server',
-        './src/index_container.js'
+        './src/index_container.js',
     ],
     output: {
         path: path.resolve(__dirname, 'dist/'),
@@ -21,14 +21,13 @@ module.exports = {
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
+            use: 'babel-loader',
         },
         {
             test: /\.scss$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: ['css-loader', 'sass-loader'],
-                publicPath: '/dist',
             })
         },
         ]
@@ -36,7 +35,8 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin({
             filename: 'styles.css',
-            disable: false,
+            // Re-enable it for production.
+            disable: true,
             allChunks: true,
         }),
         new webpack.HotModuleReplacementPlugin(),
@@ -48,5 +48,6 @@ module.exports = {
         port: 8080,
         historyApiFallback: true,
         hot: true,
+        inline: true,
     }
 };

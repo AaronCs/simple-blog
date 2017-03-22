@@ -1,0 +1,54 @@
+.navbar-user {
+  text-align: right; }
+  @media (max-width: 425px) {
+    .navbar-user {
+      text-align: center; } }
+
+.navbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  @media (max-width: 425px) {
+    .navbar-nav {
+      flex-direction: column;
+      justify-content: center; } }
+  .navbar-nav li {
+    display: inline-block;
+    font-size: 3em; }
+    .navbar-nav li * {
+      color: #000;
+      text-decoration: none; }
+
+a:hover {
+  text-decoration: overline; }
+
+body {
+  background-color: #fff;
+  font-family: "Raleway", sans-serif;
+  margin: auto 5em;
+  padding-top: 3.5em; }
+  @media (min-width: 2560px) {
+    body {
+      font-size: 2em; } }
+  @media (max-width: 375px) {
+    body {
+      margin: auto; } }
+
+input {
+  display: block;
+  margin: 1% 0 5%; }
+
+textarea {
+  margin: 1% 0 5%; }
+
+.ex {
+  float: right; }
+  .ex:hover {
+    cursor: pointer; }
+
+.hover-mouse-pointer:hover {
+  cursor: pointer; }
+
+.right {
+  float: right;
+  margin: 1em 10em auto auto; }

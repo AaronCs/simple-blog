@@ -4,6 +4,8 @@ import { Link, browserHistory } from 'react-router';
 class Nav extends Component {
     // TODO: Show a menu on click for navbar-user (dropdown?)
     // Add an upside down triangle to show it's a menu
+    // TODO: Keep the overline active when on that page.
+    // Have to access the browser history.
     render() {
       return(
         <nav className=''>
