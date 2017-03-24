@@ -11,8 +11,12 @@ class Nav extends Component {
         this.state = {
             activeTab: 'home',
         };
+    }
+    
+    componentDidMount() {
         this.setActiveTab('/', this.state.activeTab);
     }
+
     setActiveTab(url, tabName) {
         let prev = this.state.activeTab;
         prev = document.getElementById(prev);
@@ -36,7 +40,7 @@ class Nav extends Component {
             </div>
                 <ul className='navbar-nav'>
                   <li id='home' onClick={() => this.setActiveTab('/', 'home')}>
-                    <Link to='/' className=''>Home</Link>
+                    <Link to='/' >Home</Link>
                   </li>
                   <li id='new' onClick={() => this.setActiveTab('new', 'new')}>
                     <Link to='new' >New Post</Link>
