@@ -8,8 +8,8 @@ import { newPost as newPostAction } from '../actions/index';
 class NewPost extends Component {
     handleNewPost(fieldValue) {
         // TODO Get post id and username
-        const author = this.props.login.username;
-        this.props.newPostAction(fieldValue, author);
+        const user = this.props.login;
+        this.props.newPostAction(fieldValue, user.username, user.uid);
     }
     render() {
       return(

@@ -3,6 +3,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './index';
+import scss from './style/style.scss';
 
 const containerEl = document.getElementById('container');
 

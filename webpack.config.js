@@ -3,10 +3,15 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
+const extractSass = new ExtractTextPlugin({
+    filename: 'styles.css',
+    // disable: process.env.NODE_ENV === 'development',
+})
+
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-        'react-hot-loader/patch',
+        //'react-hot-loader/patch',
         './src/index_container.js',
     ],
     output: {
@@ -19,33 +24,28 @@ module.exports = {
         {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: ['react-hot-loader/webpack', 'babel-loader'],
+            use: [/*'react-hot-loader/webpack',*/ 'babel-loader'],
         },
         {
             test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
+            use: extractSass.extract({
                 use: ['css-loader', 'sass-loader'],
+                fallback: 'style-loader',
             })
         },
         ]
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'styles.css',
-            // Re-enable it for production.
-            disable: true,
-            allChunks: true,
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
+        extractSass,
+        //new webpack.HotModuleReplacementPlugin(),
+        //new webpack.NamedModulesPlugin(),
+        //new webpack.NoEmitOnErrorsPlugin(),
     ],
     devServer: {
         host: 'localhost',
         port: 8080,
         historyApiFallback: true,
-        hot: true,
+        //hot: true,
         inline: true,
     }
 };

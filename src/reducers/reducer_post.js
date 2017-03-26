@@ -12,6 +12,13 @@ export default function(state=INITIAL_STATE, action) {
               ...state.slice(action.i + 1),
           ];
         case NEW_POST:
+            if(state.find( (post) => {
+                // Prevents duplicates from appearing when deleting posts
+                // if a different user tries to delete things.
+                return post.post_id == action.payload.post_id;
+            })) {
+                return [...state];
+            }
             return [
                 action.payload,
                 ...state,

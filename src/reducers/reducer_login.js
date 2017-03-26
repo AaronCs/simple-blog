@@ -6,7 +6,7 @@ import {
 const INITIAL_STATE = {
   username: 'Guest',
   loggedIn: false,
-  token: 0,
+  uid: 0,
 };
 
 export default function(state=INITIAL_STATE, action) {
@@ -16,6 +16,7 @@ export default function(state=INITIAL_STATE, action) {
         ...state,
         username: action.payload.username.displayName,
         loggedIn: true,
+        uid: action.payload.uid,
       };
     case LOGOUT:
       return {

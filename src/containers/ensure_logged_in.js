@@ -8,7 +8,7 @@ import {browserHistory} from 'react-router';
 class EnsureLoggedIn extends Component {
   componentDidMount() {
     if(!this.props.login.loggedIn) {
-      browserHistory.replace('/login');
+      browserHistory.push('/login');
     }
   }
   render() {

@@ -18,6 +18,7 @@ export function userLogin(username) {
         type: LOGIN,
         payload: {
             username,
+            uid: username.uid,
         }
     };
 }
@@ -36,12 +37,12 @@ export function userLoginAuth() {
     return dispatch => {
         const user = firebase.auth().currentUser;
         if(!user) {
-            firebase.auth().signInWithPopup(authProvider).then( (result) => {
+            firebase.auth().signInWithRedirect(authProvider).then( (result) => {
                 const token = result.credential.accessToken;
                 const user = result.user;
                 dispatch(userLogin(user));
                 // Redirects user back to previous page.
-                browserHistory.replace('/');
+                browserHistory.goBack();
             });
         }
     };
@@ -52,7 +53,7 @@ export function userLogout() {
         firebase.auth().signOut().then( () => {
             dispatch(logout());
         });
-        browserHistory.push('/');
+        browserHistory.replace('login'); // Forcibly replaces history.
     };
 }
 
@@ -70,6 +71,9 @@ export function removePost(post_id, i) {
         database.ref('posts').child(post_id).remove().then(
             () => {
                 dispatch(unpopulatePosts(i));
+            },
+            () => {
+                console.log('Fail');
             }
         );
     };
@@ -78,6 +82,7 @@ export function removePost(post_id, i) {
 export function fetchPosts() {
     return dispatch => {
         database.ref('posts').on('child_added', (snapshot) => {
+            // FIXME: Something goes wrong when removing items.
             dispatch(populatePosts(snapshot.val(), snapshot.key));
         });
     };
@@ -98,17 +103,19 @@ export function populatePosts(data, post_id) {
             content: data.content,
             author: data.author,
             post_id,
+            uid: data.uid,
         },
     };
 }
 
 // fieldValue is an obj with content and title
-export function newPost(fieldValue, author) {
+export function newPost(fieldValue, author, uid) {
     return dispatch => {
         let post = database.ref('posts').push({
             content: fieldValue.content,
             title: fieldValue.title,
             author,
+            uid,
         });
     };
 }

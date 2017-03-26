@@ -1,2 +1,7 @@
 @import 'variables';
 // Make posts background gray
+
+.single-post {
+  background-color: $color-grey;
+  border-radius: 5px;
+}

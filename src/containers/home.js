@@ -17,16 +17,18 @@ class Home extends Component {
     // Otherwise, return an array of mapped elements.
     return posts.map( (post, i) => {
       return <SinglePost className="" post_id={post.post_id} key={i} index={i} title={post.title}
-              content={post.content} author={post.author}/>;
+              content={post.content} author={post.author} uid={post.uid}/>;
     });
   }
   render() {
     return(
-      <div>
+      <div className='home'>
         <h1>
           Home
         </h1>
-        {this.renderPosts()}
+        <div className='home-container'>
+          {this.renderPosts()}
+        </div>
       </div>
     );
   }
