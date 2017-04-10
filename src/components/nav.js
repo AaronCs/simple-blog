@@ -4,6 +4,7 @@ import { Link, browserHistory } from 'react-router';
 class Nav extends Component {
     // TODO: Show a menu on click for navbar-user (dropdown?)
     // Add an upside down triangle to show it's a menu
+    // TODO: Make menu into a hamburger when mobile detected.
     constructor(props) {
         super(props);
         this.state = {
@@ -35,7 +36,8 @@ class Nav extends Component {
     }
     render() {
       return(
-        <nav>
+        <nav className='nav'>
+            <h1>Coffee Break!</h1>
             <div className='navbar-user'>
               Welcome, {this.props.username}
             </div>

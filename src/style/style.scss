@@ -2,11 +2,16 @@
 @import 'nav';
 @import 'home';
 
+html {
+  // background: linear-gradient($color-grey4-transparent, $color-grey4);
+  height: 100%;
+}
+
 body {
-  background-color: $background-color;
+  // background-color: $color-grey4;
   font-family: $font-family;
   height: 100%;
-  margin: auto 5em;
+  // margin: auto 5em;
   padding-top: 3.5em;
 
   @media (min-width: 2560px) {
